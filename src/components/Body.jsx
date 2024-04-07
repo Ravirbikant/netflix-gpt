@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { addUser, removerUser } from "../utils/userSlice";
+import Error from "./Error";
 
 const Body = () => {
   const dispatch = useDispatch();
@@ -18,14 +19,24 @@ const Body = () => {
       path: "/browse",
       element: <Browse />,
     },
+    {
+      path: "/error",
+      element: <Error />,
+    },
   ]);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
-        const { uid, email, displayName } = user;
-        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
       } else {
         dispatch(removerUser());
       }
