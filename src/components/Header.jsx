@@ -1,5 +1,5 @@
 import { signOut } from "firebase/auth";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -8,9 +8,6 @@ const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
 
-  const [picture, setPicture] = useState(
-    "https://occ-0-3752-3646.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229"
-  );
   function handleSignOut() {
     signOut(auth)
       .then(() => {
@@ -20,12 +17,6 @@ const Header = () => {
         navigate("/error");
       });
   }
-
-  useEffect(() => {
-    if (user.photoURL) {
-      setPicture(user.photoURL);
-    }
-  }, [user]);
 
   return (
     <div
@@ -38,14 +29,16 @@ const Header = () => {
         alt="Netflix header logo"
       />
 
-      <div>
-        <img
-          src={picture}
-          alt=""
-          style={{ width: "60px", borderRadius: "50%" }}
-        />
-        <button onClick={handleSignOut}>Sign Out</button>
-      </div>
+      {user && (
+        <div>
+          <img
+            src={user.photoURL}
+            alt=""
+            style={{ width: "60px", borderRadius: "50%" }}
+          />
+          <button onClick={handleSignOut}>Sign Out</button>
+        </div>
+      )}
     </div>
   );
 };

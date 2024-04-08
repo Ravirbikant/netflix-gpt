@@ -8,9 +8,12 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { addUser } from "../utils/userSlice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [isSignUp, setIsSignUp] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
@@ -39,13 +42,21 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
           updateProfile(user, {
             displayName: name.current.value,
             photoURL:
               "https://lh3.googleusercontent.com/a/ACg8ocIm4ovfNYbhqMrwwFKuHzDPYmCCiChqF8M2Whje3YKz8e8KFWCC=s432-c-no",
           })
             .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
               navigate("/browse");
             })
             .catch((e) => {
