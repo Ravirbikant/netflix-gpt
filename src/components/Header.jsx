@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addUser, removerUser } from "../utils/userSlice";
+import { LOGO } from "../utils/constants";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -47,19 +48,11 @@ const Header = () => {
       className="d-flex justify-content-between py-2 px-4 align-items-center"
       style={{ background: "black" }}
     >
-      <img
-        className="logo-image"
-        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-        alt="Netflix header logo"
-      />
+      <img className="logo-image" src={LOGO} alt="Netflix header logo" />
 
       {user && (
         <div>
-          <img
-            src={user.photoURL}
-            alt=""
-            style={{ width: "60px", borderRadius: "50%" }}
-          />
+          <img src={user.photoURL} alt="" />
           <button onClick={handleSignOut}>Sign Out</button>
         </div>
       )}
