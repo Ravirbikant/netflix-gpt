@@ -5,12 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addUser, removerUser } from "../utils/userSlice";
-import { LOGO } from "../utils/constants";
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
+import { toggleGPTSearchView } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  const showGPTSearch = useSelector((store) => store.gptSearch.showGPTSearch);
 
   function handleSignOut() {
     signOut(auth)
@@ -43,6 +46,14 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  function handleGPTSearchClick() {
+    dispatch(toggleGPTSearchView());
+  }
+
+  function handleLanguageChange(e) {
+    dispatch(changeLanguage(e.target.value));
+  }
+
   return (
     <div
       className="d-flex justify-content-between py-2 px-4 align-items-center"
@@ -52,8 +63,22 @@ const Header = () => {
 
       {user && (
         <div>
-          <img src={user.photoURL} alt="" />
-          <button onClick={handleSignOut}>Sign Out</button>
+          {showGPTSearch && (
+            <select onChange={handleLanguageChange}>
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+          <button onClick={handleGPTSearchClick}>
+            {showGPTSearch ? "Home" : "GPT Search"}
+          </button>
+          <div>
+            <img src={user.photoURL} alt="" />
+            <button onClick={handleSignOut}>Sign Out</button>
+          </div>
         </div>
       )}
     </div>
