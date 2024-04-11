@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import VideoContainer from "./VideoContainer";
+import SecondaryContainer from "./SecondaryContainer";
 
 const MainContainer = () => {
   const movies = useSelector((store) => store.movies?.nowPlayingMovies);
@@ -15,6 +16,7 @@ const MainContainer = () => {
     <div>
       Main Container
       <VideoContainer movieId={id} />
+      <SecondaryContainer />
     </div>
   );
 };

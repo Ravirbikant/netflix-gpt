@@ -2,5 +2,7 @@
   width: 170px;
 }
 
-.test {
+.movie-card-poster {
+  width: 120px;
+  margin: 20px;
 }
