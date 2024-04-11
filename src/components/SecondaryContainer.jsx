@@ -8,6 +8,9 @@ const SecondaryContainer = () => {
   return (
     <div>
       <MovieList title="Now PLaying" movies={movies.nowPlayingMovies} />
+      <MovieList title="Top Rated" movies={movies.topRatedMovies} />
+      <MovieList title="Popular" movies={movies.popularMovies} />
+      <MovieList title="Upcoming" movies={movies.upcomingMovies} />
     </div>
   );
 };

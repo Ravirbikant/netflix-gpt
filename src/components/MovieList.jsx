@@ -5,11 +5,11 @@ const MovieList = ({ title, movies }) => {
   return (
     <div>
       {title}
-      {/* {movies.map((movie)=>(<MovieCard key={movie.id} posterPath={movie.poster_path} />)} */}
-      <div className="d-flex">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} posterPath={movie.poster_path} />
-        ))}
+      <div className="d-flex overflow-auto">
+        {movies &&
+          movies?.map((movie) => (
+            <MovieCard key={movie.id} posterPath={movie.poster_path} />
+          ))}
       </div>
     </div>
   );
