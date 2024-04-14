@@ -9,7 +9,7 @@ import {
 import { auth } from "../utils/firebase";
 import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
-import { USER_AVATAR } from "../utils/constants";
+import { BG_IMG, USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -85,30 +85,38 @@ const Login = () => {
 
   return (
     <div>
+      <div className="login-background">
+        <img src={BG_IMG} alt="" />
+        <div className="overlay"></div>
+      </div>
       <Header />
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <div className="d-flex flex-column w-50 border m-auto my-2">
-          <h1>{isSignUp ? "Sign Up" : "Sign In"}</h1>
-          {isSignUp && <input ref={name} type="text" placeholder="Name" />}
-          <input ref={email} type="text" placeholder="Email" />
-          <input ref={password} type="password" placeholder="Password" />
-          <p>{errorMessage}</p>
-          <button onClick={handleSignInClick}>Sign In</button>
-          <p
-            onClick={() => {
-              setIsSignUp(!isSignUp);
-            }}
-          >
-            {!isSignUp
-              ? "New User? Click here to Sign in"
-              : "Already a user click here."}
-          </p>
-        </div>
-      </form>
+
+      <div className="login-form">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <div className="d-flex flex-column gap-4">
+            <h1>{isSignUp ? "Sign Up" : "Sign In"}</h1>
+            {isSignUp && <input ref={name} type="text" placeholder="Name" />}
+            <input ref={email} type="text" placeholder="Email" />
+            <input ref={password} type="password" placeholder="Password" />
+            <p style={{ display: !errorMessage && "none" }}>{errorMessage}</p>
+            <button onClick={handleSignInClick}>Sign In</button>
+            <p
+              onClick={() => {
+                setIsSignUp(!isSignUp);
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              {!isSignUp
+                ? "New User? Click here to Sign in"
+                : "Already a user click here."}
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

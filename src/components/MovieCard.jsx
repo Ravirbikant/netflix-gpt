@@ -3,7 +3,7 @@ import { IMG_CDN } from "../utils/constants";
 
 const MovieCard = ({ posterPath }) => {
   return (
-    <div>
+    <div className="position-relative">
       <img
         className="movie-card-poster"
         alt="Movie Card"

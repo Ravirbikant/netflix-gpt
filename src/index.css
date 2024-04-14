@@ -1,8 +1,108 @@
-.logo-image {
-  width: 170px;
+* {
+  font-family: "Roboto";
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: black;
+  color: #fff;
 }
 
 .movie-card-poster {
-  width: 120px;
-  margin: 20px;
+  width: 150px;
+  margin: 5px;
+  transition: width 1s ease-in-out;
+  transition: margin-top 1s ease-in-out;
+  cursor: pointer;
+}
+
+.movie-card-poster:hover {
+  width: 200px;
+  margin-top: -20px;
+}
+
+.login-background {
+  position: absolute;
+  z-index: -40;
+  width: 100vw;
+  height: 120vh;
+  overflow: hidden;
+}
+
+.login-background img {
+  z-index: -30;
+  position: absolute;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+  position: relative;
+}
+
+.login-form {
+  background-color: black;
+  opacity: 0.7;
+  color: white;
+  width: 35%;
+  margin: auto;
+  padding: 4%;
+}
+
+.login-form input {
+  height: 50px;
+  background: transparent;
+  border: 1px white solid;
+  border-radius: 5px;
+  padding: 0 10px;
+  color: white;
+}
+
+.login-form button {
+  background-color: red;
+  border: none;
+  height: 48px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+.main-video-container {
+  width: 100vw;
+  height: 80vh;
+  color: white;
+}
+
+.video-container-text {
+  width: 50%;
+}
+
+.video-container-text button {
+  border: none;
+  height: 45px;
+  padding: 0 40px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.main-video {
+  width: 100vw;
+  height: 80vh;
+  z-index: -5;
+  position: absolute;
+}
+
+.main-video iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.movie-list-titles {
+  font-size: 17.92px;
+  font-weight: 500;
+  margin-bottom: 0;
 }

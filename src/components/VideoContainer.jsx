@@ -10,10 +10,8 @@ const VideoContainer = ({ movieId }) => {
   useMovieTrailer(movieId);
 
   return (
-    <div>
+    <div className="main-video">
       <iframe
-        width="560"
-        height="315"
         src={
           "https://www.youtube.com/embed/" +
           trailerVideo?.key +

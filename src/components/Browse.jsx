@@ -19,7 +19,8 @@ const Browse = () => {
   return (
     <div>
       <Header />
-      {showGPTSearch && showGPTSearch ? <GPTSearch /> : <MainContainer />}
+      {/* {showGPTSearch && showGPTSearch ? <GPTSearch /> : <MainContainer />} */}
+      <MainContainer />
     </div>
   );
 };
